@@ -18,22 +18,33 @@ TA::TA(std::string name, std::string id, std::string email,
 }
 
 // TODO: Implement getCourse and setCourse methods.
-const std::string& TA::getCourse() const noexcept { }
-void TA::setCourse(const std::string& course) {  }
+const std::string& TA::getCourse() const noexcept {return course_; }
+void TA::setCourse(const std::string& course) {  
+    checkempty(course, "course");
+    course_ = course;
+}
 
 
 // TODO: Implement getHoursPerWeek and setHoursPerWeek methods.
-double TA::getHoursPerWeek() const noexcept { }
+double TA::getHoursPerWeek() const noexcept {return hoursPerWeek_; }
 void TA::setHoursPerWeek(double hoursPerWeek) {
+    if (hoursPerWeek_ < 0.0) { // copied from constructor
+        throw std::invalid_argument("hours per week cannot be negative");
+    }
+    hoursPerWeek_ = hoursPerWeek;
 }
 
 //TODO: Implement getResponsibilities and setResponsibilities methods.
-const std::string& TA::getResponsibilities() const noexcept {  }
-void TA::setResponsibilities(const std::string& responsibilities) {  }
+const std::string& TA::getResponsibilities() const noexcept {return responsibilities_;  }
+void TA::setResponsibilities(const std::string& responsibilities) {
+    checkempty(responsibilities, "responsibilities");
+    responsibilities_ = responsibilities;
+}
 
 // TODO: Implement getRole method to return "TA".
 std::string TA::getRole() const {
-
+    const std::string& role = "TA";
+    return role;
 }
 
 std::string TA::getDescription() const {
@@ -51,5 +62,5 @@ void TA::display(std::ostream& os) const {
 
 // TODO: Implement clone method to return a unique_ptr to a new TA object.
 std::unique_ptr<Person> TA::clone() const {
-
+    return std::make_unique<TA>(*this); // copied from similar fuctions
 }

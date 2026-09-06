@@ -15,25 +15,35 @@ Student::Student(std::string name, std::string id, std::string email,
 }
 
 // TODO: Implement getMajor and setMajor methods.
-const std::string& Student::getMajor() const noexcept { }
-void Student::setMajor(const std::string& major) {  }
+const std::string& Student::getMajor() const noexcept {return major_; }
+void Student::setMajor(const std::string& major) {
+    checkempty(major, "major");
+    major_ = major;
+}
 
 // TODO: Implement getGpa and setGpa methods.
-double Student::getGpa() const noexcept { }
+double Student::getGpa() const noexcept {return gpa_; }
 void Student::setGpa(double gpa) {
+    if (gpa_ < 0.0 || gpa_ > 4.0) { // copied from constructor
+        throw std::invalid_argument("gpa must be between 0.0 and 4.0");
+    }
+    gpa_= gpa;
 }
 
 // TODO: Implement getCompletedCredits and setCompletedCredits methods.
-int Student::getCompletedCredits() const noexcept { }
+int Student::getCompletedCredits() const noexcept {return completedCredits_; }
 void Student::setCompletedCredits(int credits) {
-   
+   if (completedCredits_ < 0) { // copied from constructor
+        throw std::invalid_argument("completed credits cannot be negative");
+    }
+    completedCredits_ = credits;
 }
 
 // TODO: Implement getRole method to return "Student".
 std::string Student::getRole() const {
-
+    const std::string& role = "Student";
+    return role;
 }
-
 
 std::string Student::getDescription() const {
     return major_ + " student with GPA " + std::to_string(gpa_);

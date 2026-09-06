@@ -31,5 +31,5 @@ protected:
     std::string id_;
     std::string email_;
 };
-
+void checkempty(const std::string& property, const std::string& PropertyName); // since empty verification seems to be a common task
 std::ostream& operator<<(std::ostream& os, const Person& person);
