@@ -16,7 +16,7 @@ Person::Person(std::string name, std::string id, std::string email) {
 }
 
 //TODO: Implement getName and setName methods.
-const std::string& Person::getName() const noexcept {return name_; }
+const std::string& Person::getName() const noexcept {std::cout << name_; return name_; }
 void Person::setName(const std::string& name) {
     checkempty(name, "name");
     name_ = name;
@@ -24,14 +24,14 @@ void Person::setName(const std::string& name) {
 
 
 // TODO: Implement getId and setId methods.
-const std::string& Person::getId() const noexcept {return id_; }
+const std::string& Person::getId() const noexcept {std::cout << id_; return id_; }
 void Person::setId(const std::string& id) {
     checkempty(id, "id");
     id_ = id;
 }
 
 // TODO: Implement getEmail and setEmail methods.
-const std::string& Person::getEmail() const noexcept {return email_; }
+const std::string& Person::getEmail() const noexcept {std::cout << email_; return email_; }
 void Person::setEmail(const std::string& email) {
     checkempty(email, "email");
     email_ = email;
